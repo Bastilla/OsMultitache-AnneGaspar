@@ -46,7 +46,3 @@ while True :
     except KeyboardInterrupt:
         event.set()
         break
-
-
-
-#avec lock pour organiser le passage des threads

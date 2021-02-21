@@ -27,15 +27,16 @@ def achat(Qe, lock): #un fournisseur vient rempoter
 def vente(Qe, lock): # un client vient acheter
     while True:
         lock.acquire(True)
-        #if Qe.full():
-        if Qe.qsize() <= 1:
+        if Qe.full():
             print("---------------------------------")
             print("le client vide le stock")
             while not Qe.empty():
-                Qe.get()
-                time.sleep(1)
-            #print(list(Qe.queue))
-            print("La queue est vide")
+                if Qe.qsize() >1 :
+                    Qe.get()
+                    time.sleep(1)
+                else:
+                    break
+            print("La queue est presque vide")
             print("---------------------------------")
         lock.release()
         if event.is_set():
